@@ -81,7 +81,6 @@ import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationOpti
 import com.android.wallpaper.picker.customization.ui.viewmodel.CustomizationPickerViewModel2
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.CoroutineName
@@ -955,23 +954,6 @@ constructor(private val defaultCustomizationOptionsBinder: DefaultCustomizationO
                                     clockStyle,
                                 )
                         }
-                }
-
-                launch {
-                    clockPickerViewModel.showClockFacePresetGroupIndexUpdateToast.collect {
-                        presetGroupIndex ->
-                        val clockStyle: String =
-                            rootView.resources.getString(
-                                if (presetGroupIndex == 0) R.string.clock_style_round
-                                else R.string.clock_style_sharp
-                            )
-                        val toastMessage: String =
-                            rootView.resources.getString(
-                                R.string.clock_style_update_toast,
-                                clockStyle,
-                            )
-                        Snackbar.make(rootView, toastMessage, Snackbar.LENGTH_SHORT).show()
-                    }
                 }
             }
         }
